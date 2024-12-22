@@ -25,11 +25,17 @@ class Tanvir_Woo {
     public function __construct()
     {
         $this->define_constants();
+      
+        echo plugin_dir_url(__FILE__);
         die();
     }
 
     private function define_constants(){
-        echo 'constain define';
+        define('TW_VERSION', '1.0.0');
+        define('TW_PLUGIN_DIR', plugin_dir_path(__FILE__)); 
+        // C:\Users\Tanvir\Local Sites\woocommerce-techearty\app\public\wp-content\plugins\tanvri-woo/
+        define('TW_PLUGIN_URL', plugin_dir_url(__FILE__));
+        // http://woocommerce-techearty.local/wp-content/plugins/tanvri-woo/
     }
 }
 
