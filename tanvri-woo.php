@@ -21,7 +21,7 @@ if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     return;
 }
 
-add_action('woocommerce_before_single_product', 'wc_custom_before_single_product');
+add_action('woocommerce_after_single_product', 'wc_custom_before_single_product');
 function wc_custom_before_single_product(){
     // is_product() is a conditional tag in WooCommerce that checks if the current page is a single product page. 
    if(!is_product()){
