@@ -21,31 +21,19 @@ if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     return;
 }
 
-class Tanvir_Woo {
-    public function __construct()
-    {
-        $this->define_constants();
-      
-        echo plugin_dir_url(__FILE__);
-        die();
-    }
+add_action('woocommerce_before_single_product', 'wc_custom_before_single_product');
+function wc_custom_before_single_product(){
+    // is_product() is a conditional tag in WooCommerce that checks if the current page is a single product page. 
+   if(!is_product()){
+    return;
+   }
 
-    private function define_constants(){
-        define('TW_VERSION', '1.0.0');
-        define('TW_PLUGIN_DIR', plugin_dir_path(__FILE__)); 
-        // C:\Users\Tanvir\Local Sites\woocommerce-techearty\app\public\wp-content\plugins\tanvri-woo/
-        define('TW_PLUGIN_URL', plugin_dir_url(__FILE__));
-        // http://woocommerce-techearty.local/wp-content/plugins/tanvri-woo/
-    }
+   // Display a custom banner
+   echo '
+   <div class="wc-custom-banner" style="background-color: #e6f7ff; padding: 20px; border: 2px solid #0073aa; margin-bottom: 20px; text-align: center;">
+        <h2>Special Offer!</h2>
+        <p>Free shipping on all orders over $50.</p>
+     </div>
+    ';
+
 }
-
-// Initialize the plugin
-function tanvir_woo_init(){
-    new Tanvir_Woo();
-}
-add_action('plugins_loaded', 'tanvir_woo_init');
-
-// echo '<pre>';
-// var_dump($var); 
-// var_dump($var3); 
-// die();
