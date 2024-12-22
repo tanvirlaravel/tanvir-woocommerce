@@ -35,5 +35,17 @@ function wc_custom_before_single_product(){
         <p>Free shipping on all orders over $50.</p>
      </div>
     ';
+}
 
+add_action('wp_enqueue_scripts', 'wc_enqueue_custom_styles');
+function wc_enqueue_custom_styles() {
+    if (is_product()) {
+        wp_add_inline_style('woocommerce-general', '
+            .wc-custom-banner {
+                font-family: Arial, sans-serif;
+                color: #333;
+                border-radius: 5px;
+            }
+        ');
+    }
 }
